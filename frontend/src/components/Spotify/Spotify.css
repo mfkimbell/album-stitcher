@@ -1,0 +1,79 @@
+.spotify-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    bottom: 2%;
+    justify-content: center;
+    align-items: center;
+    z-index: 20000;
+	margin-left: 2em;
+	
+  }
+  
+  .spotify-container p {
+    margin: 0;
+  }
+  
+  .spotify-container .listening {
+    display: flex;
+    align-items: center;
+  }
+  
+  .spotify-container .listening p {
+    font-style: italic;
+    
+  }
+  
+  .spotify {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-width: 3em;
+	min-height: 3em;
+    margin-left: .7em;
+	
+	
+  }
+  
+  .spotify .image {
+    
+    min-width: 3em;
+	min-height: 3em;
+    
+    justify-content: center;
+  }
+  
+  .spotify .text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.75vh;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+ 
+  
+
+
+  .spotify .name {
+    font-family: 'Gotham', 'Circular', Arial, sans-serif;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    margin-bottom: .7em;
+}
+  .spotify .author {
+    font-family: 'Gotham', 'Circular', Arial, sans-serif;
+    text-overflow: ellipsis;
+
+  }
+
+
+  .spotify .buffer {
+	
+  }
+
+  .songtitle{
+    text-align: center;
+    margin: auto;
+  }

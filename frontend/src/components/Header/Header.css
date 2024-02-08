@@ -1,0 +1,30 @@
+.header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center; /* Center content vertically */
+	align-items: center; /* Center content horizontally */
+	color: white;
+
+	font-family: 'Arial', sans-serif; /* Use a modern font */
+
+	font-weight: bold; /* Optional: Make the font bold */
+  }
+
+  .logo {
+	
+	/* position: absolute;
+	top: 0%;
+	left: 50%; */
+	/* transform: translate(-50%, 10%); */
+	width: 2em;
+	height: 2em;
+	margin-top: 1.5vh;
+	margin-left: 1.5vh;
+	margin-right: 1vh;
+  }
+
+  .headerContainer {
+	display: flex;
+	
+	justify-content: center;
+  }

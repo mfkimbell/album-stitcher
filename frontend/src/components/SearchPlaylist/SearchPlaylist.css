@@ -1,0 +1,11 @@
+.mainContainer {
+	display: flex;
+	left: 3px;
+	background-color: #262722;
+
+}
+
+.submit {
+	min-width: 3em;
+	min-height: 3em;
+}

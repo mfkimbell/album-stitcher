@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+  background-color: rgb(22, 22, 22);
+  min-height: 100vh; /* Make the minimum height 100% of the viewport height */
+  display: flex;
+  flex-direction: row;
+  color: white;
+}
+
+.title {
+  margin-top: 1.6vh;
+  font-size: 25px;
+}
