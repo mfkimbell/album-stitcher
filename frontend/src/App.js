@@ -42,7 +42,7 @@ function App() {
   return (
     <div>
       <div className="App">
-        <Header></Header> <div className="title">AlbumStitch</div>
+        <Header></Header> <div className="title">TrackStack</div>
       </div>
       <SearchPlaylist handleSearch={handleSearch}></SearchPlaylist>
     </div>
