@@ -1,11 +1,19 @@
 import requests
 import math
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 def get_image_urls(playlist_link):
-    # Spotify credentials
-    client_id = "faa94b482a3749be80851a73cc802875"
-    client_secret = "d088eb1ffd0b4230b25af83a74d522af"
+    # Spotify credentials from environment variables
+    client_id = os.getenv("SPOTIFY_CLIENT_ID")
+    print("Client ID:", client_id)
+
+    client_secret = os.getenv("SPOTIFY_CLIENT_SECRET")
+    print("Client Secret:", client_secret)
 
     # Spotify playlist link (you can replace this with your desired playlist link)
     playlist_id = playlist_link.split("/")[-1].split("?")[0]
@@ -18,7 +26,8 @@ def get_image_urls(playlist_link):
     # Floor the length of image_urls to one of the given values
     image_count = len(image_urls)
     image_count_floor = max(
-        [21, 36, 55, 78, 112, 144, 180], key=lambda x: x if x <= image_count else -math.inf
+        [21, 36, 55, 78, 112, 144, 180],
+        key=lambda x: x if x <= image_count else -math.inf,
     )
     image_urls = image_urls[:image_count_floor]
 
