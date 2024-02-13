@@ -1,35 +1,24 @@
-from ImageGrab import *
-
-
-from PIL import Image
 import requests
+from PIL import Image, ImageResampling
 from io import BytesIO
 import math
 
-
 def download_image(url):
-    return Image.open(BytesIO(requests.get(url).content))
-
+    response = requests.get(url)
+    response.raise_for_status()  # To ensure the request was successful
+    return Image.open(BytesIO(response.content))
 
 def calculate_grid_size(num_images, target_width, target_height):
-    # Find the grid size that minimally covers the area of the target dimensions
     area_per_image = target_width * target_height / num_images
     side_length = int(math.sqrt(area_per_image))
 
-    # Calculate how many images fit horizontally and vertically
     cols = max(1, target_width // side_length)
     rows = math.ceil(num_images / cols)
 
-    # Adjust the size of each image based on the grid
     new_width = target_width // cols
-    new_height = (
-        target_height // rows
-        if rows * cols >= num_images
-        else target_height // (rows - 1)
-    )
+    new_height = target_height // rows if rows * cols >= num_images else target_height // (rows - 1)
 
     return cols, rows, new_width, new_height
-
 
 def stitch_images(image_urls, target_width, target_height):
     images = [download_image(url) for url in image_urls]
@@ -38,21 +27,16 @@ def stitch_images(image_urls, target_width, target_height):
     if num_images == 0:
         raise ValueError("No images to stitch.")
 
-    cols, rows, img_width, img_height = calculate_grid_size(
-        num_images, target_width, target_height
-    )
-
+    cols, rows, img_width, img_height = calculate_grid_size(num_images, target_width, target_height)
     combined_image = Image.new("RGB", (cols * img_width, rows * img_height))
 
     for index, image in enumerate(images):
-        resized_image = image.resize((img_width, img_height), Image.ANTIALIAS)
+        resized_image = image.resize((img_width, img_height), ImageResampling.LANCZOS)
         x_pos = (index % cols) * img_width
         y_pos = (index // cols) * img_height
         combined_image.paste(resized_image, (x_pos, y_pos))
 
-    # Crop the final image to the target dimensions if necessary
     combined_image = combined_image.crop((0, 0, target_width, target_height))
-
     return combined_image
 
 
