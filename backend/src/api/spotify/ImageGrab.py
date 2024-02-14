@@ -1,19 +1,21 @@
 import requests
 import math
-import os
 from dotenv import load_dotenv
+import os
 
-# Load environment variables from .env file
-load_dotenv()
+# Load environment variables from a .env file
 
 
 def get_image_urls(playlist_link):
-    # Spotify credentials from environment variables
-    client_id = os.getenv("SPOTIFY_CLIENT_ID")
-    print("Client ID:", client_id)
+    # Spotify credentials
+    load_dotenv()
 
+    # Spotify credentials
+
+    client_id = os.getenv("SPOTIFY_CLIENT_ID")
     client_secret = os.getenv("SPOTIFY_CLIENT_SECRET")
-    print("Client Secret:", client_secret)
+    print("client_id", client_id)
+    print("client_secret", client_secret)
 
     # Spotify playlist link (you can replace this with your desired playlist link)
     playlist_id = playlist_link.split("/")[-1].split("?")[0]
