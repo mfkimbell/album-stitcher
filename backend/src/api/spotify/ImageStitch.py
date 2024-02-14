@@ -55,7 +55,7 @@ def stitch_images(image_urls, target_width, target_height):
 
 
 image_urls = get_image_urls(
-    "https://open.spotify.com/playlist/5hsnnErdeYlJloWzgz8Mr2?si=c125f4543d5547a8"
+    "https://open.spotify.com/playlist/4Tt8IyX1wG0gaBa58azmCW?si=8c3b5c8abd8f42eb"
 )
 
 # Ideal sizes: 21(3), 36(4), 55(5), 78(6), 112(7), 144(8), 180(9)

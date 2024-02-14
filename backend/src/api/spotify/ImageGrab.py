@@ -28,7 +28,7 @@ def get_image_urls(playlist_link):
     # Floor the length of image_urls to one of the given values
     image_count = len(image_urls)
     image_count_floor = max(
-        [21, 36, 55, 78, 112, 144, 180],
+        [10, 21, 36, 55, 78, 112, 144, 180],
         key=lambda x: x if x <= image_count else -math.inf,
     )
     image_urls = image_urls[:image_count_floor]
