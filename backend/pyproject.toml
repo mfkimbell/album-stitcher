@@ -12,11 +12,15 @@ dependencies = [
     "python-dotenv>=1.0.1",
     "requests>=2.31.0",
     "pillow==9.3.0",
+    "edgedb>=1.8.0",
+    "numpy>=1.26.4",
 ]
 requires-python = "==3.9.*"
 readme = "README.md"
 license = {text = "MIT"}
 
 
+[tool]
+
 [tool.pdm]
-package-type = "application"
+distribution = false

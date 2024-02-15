@@ -1,4 +1,4 @@
-from ImageGrab import *
+from .ImageGrab import *
 from PIL import Image
 import requests
 from io import BytesIO
@@ -53,22 +53,22 @@ def stitch_images(image_urls, target_width, target_height):
 
     return combined_image
 
+def execute(spotifyPlaylist):
+# image_urls = get_image_urls(
+#     "https://open.spotify.com/playlist/4Tt8IyX1wG0gaBa58azmCW?si=8c3b5c8abd8f42eb"
+# )
+    image_urls = get_image_urls(spotifyPlaylist)
+    # Ideal sizes: 21(3), 36(4), 55(5), 78(6), 112(7), 144(8), 180(9)
 
-image_urls = get_image_urls(
-    "https://open.spotify.com/playlist/4Tt8IyX1wG0gaBa58azmCW?si=8c3b5c8abd8f42eb"
-)
+    #  75, 84, 90, 96, 105, 119, 126, 133,
+    print("Playlist Size: ", len(image_urls))
+    print("Loading...")
 
-# Ideal sizes: 21(3), 36(4), 55(5), 78(6), 112(7), 144(8), 180(9)
+    # 78/6=13 112/7=16 144/8=18
 
-#  75, 84, 90, 96, 105, 119, 126, 133,
-print("Playlist Size: ", len(image_urls))
-print("Loading...")
+    combined_image = stitch_images(image_urls, 1290, 2796)
 
-# 78/6=13 112/7=16 144/8=18
+    combined_image.show()  # To display the image
 
-combined_image = stitch_images(image_urls, 1290, 2796)
+    combined_image.save("combined_image.jpg")  # saves the image
 
-combined_image.show()  # To display the image
-
-
-combined_image.save("combined_image.jpg")  # saves the image

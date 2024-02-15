@@ -28,6 +28,7 @@ function App() {
         "http://localhost:8000/api/spotify/playlist",
         options
       );
+      console.log("res",res)
 
       const json = await res.json();
       console.log("Result", json);

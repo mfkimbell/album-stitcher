@@ -1,18 +1,18 @@
-# STL
-from enum import Enum
+# # STL
+# from enum import Enum
 
-# LOCAL
-from api.constants import BASE_URL
-
-
-class Search(Enum):
-    SEARCH = f"{BASE_URL}/search"
+# # LOCAL
+# from api.constants import BASE_URL
 
 
-class Playlist(Enum):
-    PLAYLIST = f"{BASE_URL}/playlists"
+# class Search(Enum):
+#     SEARCH = f"{BASE_URL}/search"
 
 
-class Endpoints(Enum):
-    SEARCH = Search
+# class Playlist(Enum):
+#     PLAYLIST = f"{BASE_URL}/playlists"
+
+
+# class Endpoints(Enum):
+#     SEARCH = Search
     PLAYLIST = Playlist
