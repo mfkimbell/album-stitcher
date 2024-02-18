@@ -125,9 +125,14 @@ const SearchComponent = ({ handleSearch }) => {
                 height: "40px", // Reduced height to match TextField
               }}
             >
-              <MenuItem value={1}>Device 1</MenuItem>
-              <MenuItem value={2}>Device 2</MenuItem>
-              <MenuItem value={3}>Device 3</MenuItem>
+              {/* The iphone 12 to 15 have the same screen resolution */}
+              {/* iPhone Max's have the same screen resolution */}
+              <MenuItem value={1}>iPhone 12 to 15</MenuItem> 
+              <MenuItem value={2}>iPhone Max Variant</MenuItem>
+              <MenuItem value={3}>Samsung Galaxy Regular</MenuItem>
+              <MenuItem value={3}>Samsung Galaxy Ultra's</MenuItem>
+              <MenuItem value={3}>Google Pixel</MenuItem>
+              <MenuItem value={3}>HD Phone Background</MenuItem>
             </Select>
           </FormControl>
           <FormControl
