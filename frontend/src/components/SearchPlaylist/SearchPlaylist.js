@@ -127,12 +127,12 @@ const SearchComponent = ({ handleSearch }) => {
             >
               {/* The iphone 12 to 15 have the same screen resolution */}
               {/* iPhone Max's have the same screen resolution */}
-              <MenuItem value={1}>iPhone 12 to 15</MenuItem> 
-              <MenuItem value={2}>iPhone Max Variant</MenuItem>
-              <MenuItem value={3}>Samsung Galaxy Regular</MenuItem>
-              <MenuItem value={3}>Samsung Galaxy Ultra's</MenuItem>
-              <MenuItem value={3}>Google Pixel</MenuItem>
-              <MenuItem value={3}>HD Phone Background</MenuItem>
+              <MenuItem value={1}>iPhone 12 to 15</MenuItem> {/* 2532 × 1170 */}
+              <MenuItem value={2}>iPhone Max/Plus</MenuItem> {/* 1284 × 2778 */}
+              <MenuItem value={3}>Galaxy Regular</MenuItem> {/* 2340 x 1080 */}
+              <MenuItem value={3}>Galaxy Ultra/Plus</MenuItem> {/* 3120 x 1440 */}
+              <MenuItem value={3}>Google Pixel</MenuItem> {/* 2400 × 1080 */}
+              <MenuItem value={3}>HD Phone Background</MenuItem> {/* 1080 x 1920 */}
             </Select>
           </FormControl>
           <FormControl
@@ -171,9 +171,12 @@ const SearchComponent = ({ handleSearch }) => {
                 height: "40px", // Reduced height to match TextField
               }}
             >
-              <MenuItem value={5}>5 Songs</MenuItem>
-              <MenuItem value={10}>10 Songs</MenuItem>
-              <MenuItem value={15}>15 Songs</MenuItem>
+              {/* We probably wanna do multiple's of 6 rather than 5 */}
+              <MenuItem value={6}>6 Songs</MenuItem>
+              <MenuItem value={12}>12 Songs</MenuItem>
+              <MenuItem value={18}>18 Songs</MenuItem>
+              <MenuItem value={24}>24 Songs</MenuItem>
+              <MenuItem value={30}>30 Songs</MenuItem>
             </Select>
           </FormControl>
         </Box>
