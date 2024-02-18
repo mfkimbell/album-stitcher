@@ -166,9 +166,9 @@ const SearchComponent = ({ handleSearch }) => {
                 height: "40px", // Reduced height to match TextField
               }}
             >
-              <MenuItem value={5}>5 Albums</MenuItem>
-              <MenuItem value={10}>10 Albums</MenuItem>
-              <MenuItem value={15}>15 Albums</MenuItem>
+              <MenuItem value={5}>5 Songs</MenuItem>
+              <MenuItem value={10}>10 Songs</MenuItem>
+              <MenuItem value={15}>15 Songs</MenuItem>
             </Select>
           </FormControl>
         </Box>
