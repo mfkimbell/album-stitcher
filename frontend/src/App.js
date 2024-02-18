@@ -1,38 +1,43 @@
-import logo from "./logo.svg";
-import "./App.css";
-import React, { Suspense, useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from "./components/Header/Header";
 import SearchPlaylist from "./components/SearchPlaylist/SearchPlaylist";
+import "./App.css"; // Ensure this points to the correct path of your CSS file
+import placeholder from "./logo2.png";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
-  const [planetData, setPlanetData] = useState("empty");
+  const [imageData, setImageData] = useState({
+    base64Image: "empty",
+    imageFormat: "img",
+  });
 
   const handleSearch = async (spotifyLink) => {
-    console.log("handleSearch called");
     setIsLoading(true);
-    const postData = {
-      url: spotifyLink,
-    };
+    const postData = { url: spotifyLink };
 
     try {
       const options = {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(postData),
       };
 
-      const res = await fetch(
+      const response = await fetch(
         "http://localhost:8000/api/spotify/playlist",
         options
       );
-      console.log("res",res)
 
-      const json = await res.json();
-      console.log("Result", json);
-      // setPlanetData(json.items);
+      if (response.ok) {
+        const contentType = response.headers.get("Content-Type");
+        if (contentType && contentType.includes("application/json")) {
+          const json = await response.json();
+          setImageData({ base64Image: json.image, imageFormat: "png" });
+        } else {
+          console.error("Response was not JSON.");
+        }
+      } else {
+        console.error("Response was not ok.", response);
+      }
     } catch (error) {
       console.error(`Error occurred: ${error}`);
     } finally {
@@ -41,11 +46,31 @@ function App() {
   };
 
   return (
-    <div>
-      <div className="App">
-        <Header></Header> <div className="title">TrackStack</div>
+    <div className="App">
+      <Header className="header" />
+      <SearchPlaylist handleSearch={handleSearch} isLoading={isLoading} />
+      {/* New div that will serve as a container to center the smartphone div */}
+
+      <div className="center-container">
+        <div className="smartphone">
+          {/* Conditionally render image or placeholder based on imageData */}
+          {imageData.base64Image !== "empty" ? (
+            <img
+              src={`data:image/${imageData.imageFormat};base64,${imageData.base64Image}`}
+              alt="Spotify Playlist"
+              className="phone_screen"
+              style={{ width: "16em" }}
+            />
+          ) : (
+            <img
+              src={placeholder}
+              alt="Spotify Playlist"
+              className="phone_screen"
+              style={{ width: "16em" }}
+            />
+          )}
+        </div>
       </div>
-      <SearchPlaylist handleSearch={handleSearch}></SearchPlaylist>
     </div>
   );
 }

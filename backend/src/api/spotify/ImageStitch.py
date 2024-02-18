@@ -3,6 +3,9 @@ from PIL import Image
 import requests
 from io import BytesIO
 import math
+import base64
+from io import BytesIO
+from fastapi.responses import JSONResponse
 
 
 def download_image(url):
@@ -53,10 +56,11 @@ def stitch_images(image_urls, target_width, target_height):
 
     return combined_image
 
+
 def execute(spotifyPlaylist):
-# image_urls = get_image_urls(
-#     "https://open.spotify.com/playlist/4Tt8IyX1wG0gaBa58azmCW?si=8c3b5c8abd8f42eb"
-# )
+    # image_urls = get_image_urls(
+    #     "https://open.spotify.com/playlist/4Tt8IyX1wG0gaBa58azmCW?si=8c3b5c8abd8f42eb"
+    # )
     image_urls = get_image_urls(spotifyPlaylist)
     # Ideal sizes: 21(3), 36(4), 55(5), 78(6), 112(7), 144(8), 180(9)
 
@@ -67,8 +71,24 @@ def execute(spotifyPlaylist):
     # 78/6=13 112/7=16 144/8=18
 
     combined_image = stitch_images(image_urls, 1290, 2796)
+    print("combine_image", combined_image)
+    print("combine_image type", type(combined_image))
+    
+      # Convert PIL Image to Bytes
+    # Convert PIL Image to Bytes
+    img_byte_arr = BytesIO()
+    combined_image.save(img_byte_arr, format='PNG')  # You can change 'PNG' to your desired format
+    img_byte_arr = img_byte_arr.getvalue()
 
-    combined_image.show()  # To display the image
+    # Encode image to Base64
+    img_base64 = base64.b64encode(img_byte_arr).decode('utf-8')
+    
+    print(img_base64)
 
-    combined_image.save("combined_image.jpg")  # saves the image
+    # Send Base64-encoded image in response
+    return JSONResponse(content={"image": img_base64, "format": "png"})
+    
 
+    # combined_image.show()  # To display the image
+
+    # combined_image.save("combined_image.jpg")  # saves the image

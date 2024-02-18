@@ -1,14 +1,41 @@
+/* App.css */
+
 .App {
   text-align: center;
   background-color: rgb(22, 22, 22);
-  min-height: 100vh; /* Make the minimum height 100% of the viewport height */
+  min-height: 100vh;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   color: white;
 }
 
-.title {
-  margin-top: 3vh;
-  font-size: 25px;
-  font-weight: 500;
+/* Assuming your Header component has a class name 'header' */
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
+
+/* New container for centering the smartphone div */
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - /* height of your header */);
+  margin-top: 0em;
+  
+}
+
+.smartphone {
+  width: 16em; /* Set the width of the smartphone */
+  height: 34em; /* Set the height of the smartphone */
+  background-color: transparent;
+  border: 0.6em solid black;
+  border-radius: 2em;
+  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add your pseudo-element for the notch here */

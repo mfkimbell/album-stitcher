@@ -41,7 +41,9 @@ async def get_playlist(request: Request):
     print("res", res)
     url = res['url']['query']
     print(url)
-    execute(url)
+    return execute(url)
+    
+    
     # assert res.get("url")
 
     # url = res.get("url")

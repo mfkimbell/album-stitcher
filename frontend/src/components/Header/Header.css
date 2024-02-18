@@ -2,9 +2,9 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center; /* Center content vertically */
-	align-items: center; /* Center content horizontally */
+	align-items: left; /* Center content horizontally */
 	color: white;
-
+	background-color: black;
 	font-family: 'Arial', sans-serif; /* Use a modern font */
 
 	font-weight: bold; /* Optional: Make the font bold */
@@ -16,15 +16,16 @@
 	top: 0%;
 	left: 50%; */
 	/* transform: translate(-50%, 10%); */
-	width: 6em;
-	height: 6em;
-	margin-top: 0vh;
+	width: 4em;
+	height: 4em;
+
 	margin-left: 1.5vh;
 	margin-right: 1vh;
   }
 
   .headerContainer {
 	display: flex;
-	
-	justify-content: center;
+	align-items: left;
+	background-color: black;
+	justify-content: left;
   }
