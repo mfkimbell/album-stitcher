@@ -148,13 +148,13 @@ const SearchComponent = ({ handleSearch }) => {
                 top: "-6px",
               }}
             >
-              Albums to Include
+              # Songs to Include
             </InputLabel>
             <Select
               labelId="album-count-label"
               id="album-count-select"
               value={albumCount}
-              label="Albums to Include"
+              label="Songs to Include"
               onChange={handleAlbumCountChange}
               sx={{
                 ".MuiOutlinedInput-notchedOutline": {
