@@ -57,11 +57,11 @@ def stitch_images(image_urls, target_width, target_height):
     return combined_image
 
 
-def execute(spotifyPlaylist):
+def execute(url, resolution, album_count):
     # image_urls = get_image_urls(
     #     "https://open.spotify.com/playlist/4Tt8IyX1wG0gaBa58azmCW?si=8c3b5c8abd8f42eb"
     # )
-    image_urls = get_image_urls(spotifyPlaylist)
+    image_urls = get_image_urls(url)
     # Ideal sizes: 21(3), 36(4), 55(5), 78(6), 112(7), 144(8), 180(9)
 
     #  75, 84, 90, 96, 105, 119, 126, 133,
@@ -69,8 +69,8 @@ def execute(spotifyPlaylist):
     print("Loading...")
 
     # 78/6=13 112/7=16 144/8=18
-
-    combined_image = stitch_images(image_urls, 1290, 2796)
+    print(*resolution)
+    combined_image = stitch_images(image_urls, *resolution)
     print("combine_image", combined_image)
     print("combine_image type", type(combined_image))
     
@@ -83,8 +83,6 @@ def execute(spotifyPlaylist):
     # Encode image to Base64
     img_base64 = base64.b64encode(img_byte_arr).decode('utf-8')
     
-    print(img_base64)
-
     # Send Base64-encoded image in response
     return JSONResponse(content={"image": img_base64, "format": "png"})
     

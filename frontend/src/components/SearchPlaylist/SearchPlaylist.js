@@ -130,9 +130,9 @@ const SearchComponent = ({ handleSearch }) => {
               <MenuItem value={1}>iPhone 12 to 15</MenuItem> {/* 2532 × 1170 */}
               <MenuItem value={2}>iPhone Max/Plus</MenuItem> {/* 1284 × 2778 */}
               <MenuItem value={3}>Galaxy Regular</MenuItem> {/* 2340 x 1080 */}
-              <MenuItem value={3}>Galaxy Ultra/Plus</MenuItem> {/* 3120 x 1440 */}
-              <MenuItem value={3}>Google Pixel</MenuItem> {/* 2400 × 1080 */}
-              <MenuItem value={3}>HD Phone Background</MenuItem> {/* 1080 x 1920 */}
+              <MenuItem value={4}>Galaxy Ultra/Plus</MenuItem> {/* 3120 x 1440 */}
+              <MenuItem value={5}>Google Pixel</MenuItem> {/* 2400 × 1080 */}
+              <MenuItem value={6}>HD Phone Background</MenuItem> {/* 1080 x 1920 */}
             </Select>
           </FormControl>
           <FormControl
@@ -177,6 +177,8 @@ const SearchComponent = ({ handleSearch }) => {
               <MenuItem value={18}>18 Songs</MenuItem>
               <MenuItem value={24}>24 Songs</MenuItem>
               <MenuItem value={30}>30 Songs</MenuItem>
+              <MenuItem value={36}>36 Songs</MenuItem>
+              <MenuItem value={42}>42 Songs</MenuItem>
             </Select>
           </FormControl>
         </Box>

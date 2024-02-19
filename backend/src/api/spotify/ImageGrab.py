@@ -16,8 +16,8 @@ def get_image_urls(playlist_link):
     # client_secret = os.getenv("SPOTIFY_CLIENT_SECRET")
     client_id = "faa94b482a3749be80851a73cc802875"
     client_secret = "d088eb1ffd0b4230b25af83a74d522af"
-    print("client_id", client_id)
-    print("client_secret", client_secret)
+    # print("client_id", client_id)
+    # print("client_secret", client_secret)
 
     # Spotify playlist link (you can replace this with your desired playlist link)
     playlist_id = playlist_link.split("/")[-1].split("?")[0]
