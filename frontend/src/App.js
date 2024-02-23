@@ -24,7 +24,7 @@ function App() {
 
       const response = await fetch(
         "http://localhost:8000/api/spotify/playlist",
-        options
+        options,
       );
 
       if (response.ok) {
@@ -59,14 +59,20 @@ function App() {
               src={`data:image/${imageData.imageFormat};base64,${imageData.base64Image}`}
               alt="Spotify Playlist"
               className="phone_screen"
-              style={{ width: "16em" }}
+              style={{
+                width: "16em",
+                height: "34em",
+              }}
             />
           ) : (
             <img
               src={placeholder}
               alt="Spotify Playlist"
               className="phone_screen"
-              style={{ width: "16em" }}
+              style={{
+                width: "16em",
+                height: "34em",
+              }}
             />
           )}
         </div>

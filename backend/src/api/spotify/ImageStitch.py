@@ -17,20 +17,38 @@ def calculate_grid_size(num_images, target_width, target_height):
     area_per_image = target_width * target_height / num_images
     side_length = int(math.sqrt(area_per_image))
 
-    # Calculate how many images fit horizontally and vertically
-    cols = max(1, target_width // side_length)
-    rows = math.ceil(num_images / cols)
+    grid_layouts = {
+        6: (2, 3),
+        12: (3, 4),
+        18: (3, 6),
+        24: (4, 6),
+        30: (5, 6),
+        36: (6, 6),
+        42: (6, 7),
+    }
 
-    # Adjust the size of each image based on the grid
+    # Get the rows and columns from the predefined layouts
+    cols, rows = grid_layouts.get(num_images, (1, num_images))
+
+    # Calculate the new width and height of each image
     new_width = target_width // cols
-    new_height = (
-        target_height // rows
-        if rows * cols >= num_images
-        else target_height // (rows - 1)
-    )
+    new_height = target_height // rows
 
     return cols, rows, new_width, new_height
 
+    # Calculate how many images fit horizontally and vertically
+    # cols = max(1, target_width // side_length)
+    # rows = math.ceil(num_images / cols)
+
+    # # Adjust the size of each image based on the grid
+    # new_width = target_width // cols
+    # new_height = (
+    #     target_height // rows
+    #     if rows * cols >= num_images
+    #     else target_height // (rows - 1)
+    # )
+
+    # return cols, rows, new_width, new_height
 
 def stitch_images(image_urls, target_width, target_height):
     images = [download_image(url) for url in image_urls]
@@ -73,7 +91,7 @@ def execute(url, resolution, album_count):
     combined_image = stitch_images(image_urls, *resolution)
     print("combine_image", combined_image)
     print("combine_image type", type(combined_image))
-    
+
       # Convert PIL Image to Bytes
     # Convert PIL Image to Bytes
     img_byte_arr = BytesIO()
@@ -82,10 +100,10 @@ def execute(url, resolution, album_count):
 
     # Encode image to Base64
     img_base64 = base64.b64encode(img_byte_arr).decode('utf-8')
-    
+
     # Send Base64-encoded image in response
     return JSONResponse(content={"image": img_base64, "format": "png"})
-    
+
 
     # combined_image.show()  # To display the image
 
