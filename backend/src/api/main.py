@@ -29,7 +29,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: str = None):
+async def read_item(item_id: int, q: str = ""):
     return {"item_id": item_id, "q": q}
 
 @app.post("/api/spotify/playlist")
@@ -47,12 +47,12 @@ async def get_playlist(request: Request):
     print("res", res)
     url = res['url']['query']
     device = res['url']['device']
-    album_count = res['url']['albumCount']
+    # album_count = res['url']['albumCount']
 
     resolution = DEVICE_RESOLUTIONS.get(device, (1080, 1920))
-    return execute(url, resolution, album_count)
-    
-    
+    return execute(url, resolution)
+
+
     # assert res.get("url")
 
     # url = res.get("url")
@@ -68,5 +68,3 @@ async def get_playlist(request: Request):
     # playlist = f"{playlist.PLAYLIST.value}/{ID}"
 
     # res = requests.get(playlist, headers=headers)
-
- 

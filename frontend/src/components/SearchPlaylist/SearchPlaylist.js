@@ -9,7 +9,7 @@ import InputLabel from "@mui/material/InputLabel";
 const SearchComponent = ({ handleSearch }) => {
   const [query, setQuery] = useState("");
   const [deviceValue, setDeviceValue] = useState(""); // State for the device dropdown
-  const [albumCount, setAlbumCount] = useState(""); // State for the number of albums dropdown
+  // const [albumCount, setAlbumCount] = useState(""); // State for the number of albums dropdown
 
   // const handleSubmit = (e) => {
   //   e.preventDefault(); // Prevent the default form submission behavior
@@ -18,22 +18,27 @@ const SearchComponent = ({ handleSearch }) => {
 
   const handleDeviceChange = (event) => {
     setDeviceValue(event.target.value);
-  };
-
-  const handleAlbumCountChange = (event) => {
-    const newAlbumCount = event.target.value;
-    setAlbumCount(newAlbumCount); // Update the album count state
-
-    // Construct the search parameters
     const searchParams = {
       query,
       device: deviceValue,
-      albumCount: newAlbumCount,
     };
-    console.log("handle SEARCH BEING CALLED");
-    // Execute handleSearch with the current query and the new album count
     handleSearch(searchParams);
   };
+
+  // const handleAlbumCountChange = (event) => {
+  //   const newAlbumCount = event.target.value;
+  //   setAlbumCount(newAlbumCount); // Update the album count state
+
+  //   // Construct the search parameters
+  //   const searchParams = {
+  //     query,
+  //     device: deviceValue,
+  //     albumCount: newAlbumCount,
+  //   };
+  //   console.log("handle SEARCH BEING CALLED");
+  //   // Execute handleSearch with the current query and the new album count
+  //   handleSearch(searchParams);
+  // };
 
   return (
     <>
@@ -130,12 +135,14 @@ const SearchComponent = ({ handleSearch }) => {
               <MenuItem value={1}>iPhone 12 to 15</MenuItem> {/* 2532 × 1170 */}
               <MenuItem value={2}>iPhone Max/Plus</MenuItem> {/* 1284 × 2778 */}
               <MenuItem value={3}>Galaxy Regular</MenuItem> {/* 2340 x 1080 */}
-              <MenuItem value={4}>Galaxy Ultra/Plus</MenuItem> {/* 3120 x 1440 */}
+              <MenuItem value={4}>Galaxy Ultra/Plus</MenuItem>{" "}
+              {/* 3120 x 1440 */}
               <MenuItem value={5}>Google Pixel</MenuItem> {/* 2400 × 1080 */}
-              <MenuItem value={6}>HD Phone Background</MenuItem> {/* 1080 x 1920 */}
+              <MenuItem value={6}>HD Phone Background</MenuItem>{" "}
+              {/* 1080 x 1920 */}
             </Select>
           </FormControl>
-          <FormControl
+          {/* <FormControl
             sx={{ m: 0, minWidth: 120, width: "100%", maxWidth: "250px" }}
           >
             <InputLabel
@@ -171,16 +178,16 @@ const SearchComponent = ({ handleSearch }) => {
                 height: "40px", // Reduced height to match TextField
               }}
             >
-              {/* We probably wanna do multiple's of 6 rather than 5 */}
-              <MenuItem value={6}>6 Songs</MenuItem>
-              <MenuItem value={12}>12 Songs</MenuItem>
-              <MenuItem value={18}>18 Songs</MenuItem>
-              <MenuItem value={24}>24 Songs</MenuItem>
-              <MenuItem value={30}>30 Songs</MenuItem>
-              <MenuItem value={36}>36 Songs</MenuItem>
-              <MenuItem value={42}>42 Songs</MenuItem>
-            </Select>
-          </FormControl>
+
+          <MenuItem value={6}>6 Songs</MenuItem>
+          <MenuItem value={12}>12 Songs</MenuItem>
+          <MenuItem value={18}>18 Songs</MenuItem>
+          <MenuItem value={24}>24 Songs</MenuItem>
+          <MenuItem value={30}>30 Songs</MenuItem>
+          <MenuItem value={36}>36 Songs</MenuItem>
+          <MenuItem value={42}>42 Songs</MenuItem>
+        </Select>
+      </FormControl> */}
         </Box>
       </Box>
     </>

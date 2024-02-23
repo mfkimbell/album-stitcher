@@ -17,38 +17,38 @@ def calculate_grid_size(num_images, target_width, target_height):
     area_per_image = target_width * target_height / num_images
     side_length = int(math.sqrt(area_per_image))
 
-    grid_layouts = {
-        6: (2, 3),
-        12: (3, 4),
-        18: (3, 6),
-        24: (4, 6),
-        30: (5, 6),
-        36: (6, 6),
-        42: (6, 7),
-    }
+    # grid_layouts = {
+    #     6: (2, 3),
+    #     12: (3, 4),
+    #     18: (3, 6),
+    #     24: (4, 6),
+    #     30: (5, 6),
+    #     36: (6, 6),
+    #     42: (6, 7),
+    # }
 
-    # Get the rows and columns from the predefined layouts
-    cols, rows = grid_layouts.get(num_images, (1, num_images))
+    # # Get the rows and columns from the predefined layouts
+    # cols, rows = grid_layouts.get(num_images, (1, num_images))
 
-    # Calculate the new width and height of each image
-    new_width = target_width // cols
-    new_height = target_height // rows
-
-    return cols, rows, new_width, new_height
-
-    # Calculate how many images fit horizontally and vertically
-    # cols = max(1, target_width // side_length)
-    # rows = math.ceil(num_images / cols)
-
-    # # Adjust the size of each image based on the grid
+    # # Calculate the new width and height of each image
     # new_width = target_width // cols
-    # new_height = (
-    #     target_height // rows
-    #     if rows * cols >= num_images
-    #     else target_height // (rows - 1)
-    # )
+    # new_height = target_height // rows
 
     # return cols, rows, new_width, new_height
+
+    #Calculate how many images fit horizontally and vertically
+    cols = max(1, target_width // side_length)
+    rows = math.ceil(num_images / cols)
+
+    # Adjust the size of each image based on the grid
+    new_width = target_width // cols
+    new_height = (
+        target_height // rows
+        if rows * cols >= num_images
+        else target_height // (rows - 1)
+    )
+
+    return cols, rows, new_width, new_height
 
 def stitch_images(image_urls, target_width, target_height):
     images = [download_image(url) for url in image_urls]
@@ -75,7 +75,7 @@ def stitch_images(image_urls, target_width, target_height):
     return combined_image
 
 
-def execute(url, resolution, album_count):
+def execute(url, resolution):
     # image_urls = get_image_urls(
     #     "https://open.spotify.com/playlist/4Tt8IyX1wG0gaBa58azmCW?si=8c3b5c8abd8f42eb"
     # )

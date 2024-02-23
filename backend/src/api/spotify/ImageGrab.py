@@ -6,6 +6,7 @@ import os
 # Load environment variables from a .env file
 
 
+# def get_image_urls(playlist_link, album_count):
 def get_image_urls(playlist_link):
     # Spotify credentials
     load_dotenv()
@@ -29,6 +30,9 @@ def get_image_urls(playlist_link):
 
     # Floor the length of image_urls to one of the given values
     image_count = len(image_urls)
+    # if image_count > album_count:
+    #     image_count_floor = album_count
+    # else:
     image_count_floor = max(
         [10, 21, 36, 55, 78, 112, 144, 180],
         key=lambda x: x if x <= image_count else -math.inf,
