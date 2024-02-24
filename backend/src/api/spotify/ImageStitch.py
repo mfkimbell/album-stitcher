@@ -57,37 +57,42 @@ def stitch_images(image_urls, target_width, target_height):
     return combined_image
 
 
-def execute(spotifyPlaylist):
+def execute(spotifyPlaylist, albumCount):
     # image_urls = get_image_urls(
     #     "https://open.spotify.com/playlist/4Tt8IyX1wG0gaBa58azmCW?si=8c3b5c8abd8f42eb"
     # )
-    image_urls = get_image_urls(spotifyPlaylist)
-    # Ideal sizes: 21(3), 36(4), 55(5), 78(6), 112(7), 144(8), 180(9)
+    response = get_image_urls(spotifyPlaylist, albumCount)
+    image_urls = response[0]
+    message = response[1]
+    print("we got message ", message)
+
+    # Ideal sizes: 10(2), 21(3), 36(4), 55(5), 78(6), 112(7), 144(8), 180(9)
 
     #  75, 84, 90, 96, 105, 119, 126, 133,
-    print("Playlist Size: ", len(image_urls))
+    print("Unique Album Number: ", len(image_urls))
     print("Loading...")
 
     # 78/6=13 112/7=16 144/8=18
 
     combined_image = stitch_images(image_urls, 1290, 2796)
-    print("combine_image", combined_image)
-    print("combine_image type", type(combined_image))
-    
-      # Convert PIL Image to Bytes
+
+    # Convert PIL Image to Bytes
     # Convert PIL Image to Bytes
     img_byte_arr = BytesIO()
-    combined_image.save(img_byte_arr, format='PNG')  # You can change 'PNG' to your desired format
+    combined_image.save(
+        img_byte_arr, format="PNG"
+    )  # You can change 'PNG' to your desired format
     img_byte_arr = img_byte_arr.getvalue()
 
     # Encode image to Base64
-    img_base64 = base64.b64encode(img_byte_arr).decode('utf-8')
-    
-    print(img_base64)
+    img_base64 = base64.b64encode(img_byte_arr).decode("utf-8")
 
     # Send Base64-encoded image in response
-    return JSONResponse(content={"image": img_base64, "format": "png"})
-    
+
+    # return JSONResponse(
+    #     content={"image": img_base64, "format": "png", "message": {message}}
+    # )
+    return JSONResponse(content={"image": img_base64, "message": message})
 
     # combined_image.show()  # To display the image
 

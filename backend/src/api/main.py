@@ -1,14 +1,14 @@
-
 # STL
 import re
+
 # PDM
 import requests
 from fastapi import FastAPI, Request, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from .spotify.ImageStitch import *
+
 # from starlette.responses import FileResponse
 # from api.spotify.SpotifyClient import SpotifyClient
-
 
 
 app = FastAPI()
@@ -23,6 +23,7 @@ app.add_middleware(
 
 print("main.py running")
 
+
 @app.get("/")
 async def read_root():
     return {"Hello": "World"}
@@ -32,18 +33,18 @@ async def read_root():
 async def read_item(item_id: int, q: str = None):
     return {"item_id": item_id, "q": q}
 
+
 @app.post("/api/spotify/playlist")
 async def get_playlist(request: Request):
-    print("request",request)
-  
+    print("request", request)
 
     res = await request.json()
-    print("res", res)
-    url = res['url']['query']
+
+    url = res["url"]
+    albumCount = res["albumCount"]
     print(url)
-    return execute(url)
-    
-    
+    return execute(url, albumCount)
+
     # assert res.get("url")
 
     # url = res.get("url")
@@ -59,5 +60,3 @@ async def get_playlist(request: Request):
     # playlist = f"{playlist.PLAYLIST.value}/{ID}"
 
     # res = requests.get(playlist, headers=headers)
-
- 

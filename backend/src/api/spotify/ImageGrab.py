@@ -6,7 +6,7 @@ import os
 # Load environment variables from a .env file
 
 
-def get_image_urls(playlist_link):
+def get_image_urls(playlist_link, albumCount):
     # Spotify credentials
     load_dotenv()
 
@@ -27,15 +27,30 @@ def get_image_urls(playlist_link):
     playlist_data = get_playlist_data(playlist_id, access_token)
     image_urls = extract_image_urls(playlist_data)
 
+    print("albumCount", albumCount)
+    print("len", len(image_urls))
+
     # Floor the length of image_urls to one of the given values
     image_count = len(image_urls)
-    image_count_floor = max(
-        [10, 21, 36, 55, 78, 112, 144, 180],
-        key=lambda x: x if x <= image_count else -math.inf,
-    )
+    if image_count > albumCount:
+        print("we have more than enough images")
+
+        image_count_floor = albumCount
+        guess = "5 minutes"
+        message = f"{albumCount} albums should take around {guess}"
+    else:
+
+        # do some logic to alert user we floored values
+        image_count_floor = max(
+            [10, 21, 36, 55, 78, 112, 144, 180],
+            key=lambda x: x if x <= image_count else -math.inf,
+        )
+        print("error not enough images, going to a lower bracket")
+        message = "Not enough unique albums, using {image_count_floor} albums instead"
     image_urls = image_urls[:image_count_floor]
 
-    return image_urls
+    response = [image_urls, message]
+    return response
 
 
 # Function to get access token
@@ -77,6 +92,7 @@ def get_playlist_data(playlist_id, access_token):
 
 def extract_image_urls(playlist_data):
     image_urls = set()  # Use a set to store unique image URLs
+
     for item in playlist_data["tracks"]["items"]:
         # Each item represents a track
         track = item["track"]
