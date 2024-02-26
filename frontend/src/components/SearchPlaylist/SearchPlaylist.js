@@ -9,21 +9,19 @@ import InputLabel from "@mui/material/InputLabel";
 const SearchComponent = ({ handleSearch }) => {
   const [query, setQuery] = useState("");
   const [albumCount, setAlbumCount] = useState(""); // State for the number of albums dropdown
+  const [device, setDevice] = useState("");
 
-  // Function to handle changes in the text field for Spotify link
   const handleQueryChange = (e) => {
     const newQuery = e.target.value;
-    setQuery(newQuery); // Update local state with the new query
+    setQuery(newQuery);
     setAlbumCount(""); // Reset albumCount to default value when query changes
   };
 
-  // Function to handle changes in the album count dropdown
   const handleAlbumCountChange = (e) => {
     const newAlbumCount = e.target.value;
-    setAlbumCount(newAlbumCount); // Update local state with the new album count
+    setAlbumCount(newAlbumCount);
     if (query) {
-      // Make sure there is a query to search with
-      handleSearch(query, newAlbumCount); // Call handleSearch with the query and the new album count
+      handleSearch(query, newAlbumCount);
     }
   };
 
@@ -31,13 +29,14 @@ const SearchComponent = ({ handleSearch }) => {
     <>
       <Box
         sx={{
-          marginBottom: "0rem",
+          marginBottom: "0.5rem", // Slightly increased for spacing below the component
           backgroundColor: "black",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          p: "1rem",
+          p: "1.2rem",
           bgcolor: "transparent",
+          marginTop: ".5em"
         }}
       >
         <Box
@@ -46,7 +45,7 @@ const SearchComponent = ({ handleSearch }) => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: ".3rem",
+            gap: "1.3rem", // Reduced gap to bring elements closer
             width: "100%",
           }}
         >
@@ -55,10 +54,11 @@ const SearchComponent = ({ handleSearch }) => {
             label="Enter Playlist"
             variant="outlined"
             value={query}
-            onChange={handleQueryChange} // Updated to use handleQueryChange
+            onChange={handleQueryChange}
             sx={{
               ".MuiInputBase-input": {
                 color: "white",
+                padding: "8px 14px", // Adjusted padding for centered text and shorter height
               },
               ".MuiOutlinedInput-root": {
                 "& fieldset": {
@@ -73,14 +73,67 @@ const SearchComponent = ({ handleSearch }) => {
               },
               ".MuiInputLabel-outlined": {
                 color: "white",
+                top: "-6px", // Adjusted for vertical centering of label
               },
               width: "100%",
               maxWidth: "250px",
             }}
           />
 
+{/* <FormControl
+            sx={{ 
+              minWidth: 100, 
+              width: "100%", 
+              maxWidth: "250px",
+              ".MuiInputBase-root": {
+                margin: "0px", // Reduced margin to bring elements closer
+              },
+              ".MuiInputLabel-outlined": {
+                top: "-6px", // Adjusted for vertical centering of label
+              },
+            }}
+          >
+            <InputLabel id="album-count-label" sx={{ color: "white" }}>
+              Device Type
+            </InputLabel>
+            <Select
+              labelId="album-count-label"
+              id="album-count-select"
+              value={albumCount}
+              label="# of Albums to include"
+              onChange={handleAlbumCountChange}
+              sx={{
+                ".MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white",
+                },
+                "& .MuiSvgIcon-root": {
+                  color: "white",
+                },
+                color: "white",
+                backgroundColor: "transparent",
+                ".MuiSelect-select": {
+                  padding: "8px 14px", // Adjusted padding for centered text and shorter height
+                },
+              }}
+            >
+              <MenuItem value={3}> iPhone 12-15</MenuItem>
+              <MenuItem value={10}>iPhone Max</MenuItem>
+              
+            </Select>
+          </FormControl> */}
+
           <FormControl
-            sx={{ mt: 1, minWidth: 120, width: "100%", maxWidth: "250px" }}
+            sx={{ 
+              minWidth: 100, 
+              width: "100%", 
+              maxWidth: "250px",
+              ".MuiInputBase-root": {
+                margin: "0px", // Reduced margin to bring elements closer
+              },
+              ".MuiInputLabel-outlined": {
+                top: "-6px", // Adjusted for vertical centering of label
+              },
+            }}
           >
             <InputLabel id="album-count-label" sx={{ color: "white" }}>
               # of Albums to include
@@ -100,8 +153,12 @@ const SearchComponent = ({ handleSearch }) => {
                 },
                 color: "white",
                 backgroundColor: "transparent",
+                ".MuiSelect-select": {
+                  padding: "8px 14px", // Adjusted padding for centered text and shorter height
+                },
               }}
             >
+              <MenuItem value={3}>3 Albums (1 x 3)</MenuItem>
               <MenuItem value={10}>10 Albums (2 x 5)</MenuItem>
               <MenuItem value={21}>21 Albums (3 x 7)</MenuItem>
               <MenuItem value={36}>36 Albums (4 x 9)</MenuItem>

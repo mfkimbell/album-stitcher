@@ -29,21 +29,29 @@ async def read_root():
     return {"Hello": "World"}
 
 
-@app.get("/items/{item_id}")
-async def read_item(item_id: int, q: str = None):
-    return {"item_id": item_id, "q": q}
-
-
 @app.post("/api/spotify/playlist")
 async def get_playlist(request: Request):
+    DEVICE_RESOLUTIONS = {
+        1: (2532, 1170),  # iPhone 12 to 15
+        2: (1284, 2778),  # iPhone Max/Plus
+        # 3: (2340, 1080),  # Galaxy Regular
+        # 4: (3120, 1440),  # Galaxy Ultra/Plus
+        # 5: (2400, 1080),  # Google Pixel
+        # 6: (1080, 1920),  # HD Phone Background
+    }
     print("request", request)
 
     res = await request.json()
 
     url = res["url"]
     albumCount = res["albumCount"]
+    device = 1  # res["device"]
+
     print(url)
-    return execute(url, albumCount)
+    if device == "1":
+        return execute(url, albumCount)
+    # if device == "2":
+    #     return execute2(url,albumCount)
 
     # assert res.get("url")
 

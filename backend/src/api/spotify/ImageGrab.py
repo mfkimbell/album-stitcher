@@ -37,16 +37,16 @@ def get_image_urls(playlist_link, albumCount):
 
         image_count_floor = albumCount
         guess = "5 minutes"
-        message = f"{albumCount} albums should take around {guess}"
+        message = f""
     else:
 
         # do some logic to alert user we floored values
         image_count_floor = max(
-            [10, 21, 36, 55, 78, 112, 144, 180],
+            [3, 10, 21, 36, 55, 78, 112, 144, 180],
             key=lambda x: x if x <= image_count else -math.inf,
         )
         print("error not enough images, going to a lower bracket")
-        message = "Not enough unique albums, using {image_count_floor} albums instead"
+        message = f"Not enough unique albums, using {image_count_floor} albums instead"
     image_urls = image_urls[:image_count_floor]
 
     response = [image_urls, message]
